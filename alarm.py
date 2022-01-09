@@ -2,7 +2,7 @@ import time
 import requests
 import psutil
 
-url = 'http://localhost:5000'
+url = 'http://localhost:8080'
 
 
 def send_alarm(url_request, data):
