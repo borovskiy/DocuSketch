@@ -1,5 +1,8 @@
 FROM python:3.7-alpine
 
+RUN apk update \
+    && apk add build-base linux-headers
+
 ADD . /code
 
 WORKDIR /code
