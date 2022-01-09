@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  app:
+    build: ./flaskapp
+    ports:
+      - "5000:5000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      MONGO_INITDB_DATABASE: "api"
+    ports:
+      - "27017:27017"
+    command:
+      - mongod
+    logging:
+      driver: none
