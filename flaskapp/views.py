@@ -8,11 +8,13 @@ import app
 class ApiIndex(Resource):
 
     def get(self):
+        """Вывод всех записей из бд"""
         data = app.db.api.find()
         new = [i for i in data]
         return jsonify(new)
 
     def post(self):
+        """Создание записи в бд"""
         insert_data = request.form.to_dict()
         if bool(insert_data) is True:
             id_create_obj = app.db.api.insert_one(insert_data)
@@ -24,6 +26,10 @@ class ApiIndex(Resource):
 class ApiPut(Resource):
 
     def put(self, id_key):
+        """
+        Изменение записи в бд
+        id_key - это _id в бд
+        """
         data = app.db.api.find_one_and_update({'_id': ObjectId(id_key)},
                                               update={'$set': request.form.to_dict()},
                                               new=True)
